@@ -7,8 +7,17 @@ import { useState } from "react";
 import { Heading } from "../Heading";
 import * as Styled from "./styles";
 
-export const TrackCard = ({ cover, author, title, trackLink, audioLink }) => {
+export const TrackCard = ({
+  cover,
+  artist,
+  title,
+  trackLink,
+  audioLink,
+  duration,
+}) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const durationInMinutes = (duration / 60).toFixed(2).replace(".", ":");
 
   return (
     <Styled.Wrapper>
@@ -23,8 +32,8 @@ export const TrackCard = ({ cover, author, title, trackLink, audioLink }) => {
           </Styled.FavoriteButton>
 
           <Styled.Duration>
-            <span>
-              <Timer /> 3:47
+            <span className="timer">
+              <Timer /> {durationInMinutes}
             </span>
           </Styled.Duration>
         </Styled.IconsContainer>
@@ -32,7 +41,7 @@ export const TrackCard = ({ cover, author, title, trackLink, audioLink }) => {
 
       <Heading as="h2" size="small">
         <a href={trackLink} rel="noreferrer" target="_blank">
-          {title} - <span>{author}</span>
+          {title} - <span>{artist}</span>
         </a>
       </Heading>
 

@@ -34,6 +34,23 @@ export const Wrapper = styled.div`
       img {
         opacity: 0.8;
       }
+
+      span.timer {
+        color: black;
+      }
+    }
+
+    @media ${theme.media.lteSmall} {
+      audio::-webkit-media-controls-mute-button,
+      audio::-webkit-media-controls-volume-slider-container,
+      audio::-webkit-media-controls-volume-slider {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+
+      audio::-webkit-media-controls-play-button {
+      }
     }
   `}
 `;
@@ -85,8 +102,9 @@ export const Duration = styled.div`
 
     & span {
       position: absolute;
-      bottom: 1rem;
-      right: 1rem;
+      top: 1rem;
+      left: 1rem;
+      transition: color 0.3s ease-in-out;
 
       display: block;
       font-size: calc(${theme.font.sizes.small} - 0.1rem);
