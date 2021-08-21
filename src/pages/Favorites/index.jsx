@@ -12,6 +12,8 @@ export const Favorites = () => {
     return () => dispatch(resetTracks());
   }, [dispatch]);
 
+  document.title = "MusicApp - Favoritos";
+
   return (
     <BaseTemplate>
       <TrackGrid tracks={tracks} isFavorite={true} />
