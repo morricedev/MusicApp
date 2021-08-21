@@ -1,16 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-export const Container = styled.a`
+export const Container = styled.div`
   ${() => css`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-
-    > img {
-      width: 15rem;
-      height: 15rem;
-      border-radius: 50%;
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
     }
   `}
 `;
