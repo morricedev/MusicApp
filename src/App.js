@@ -1,8 +1,14 @@
+import { Switch, Route } from "react-router-dom";
+
+import { Home } from "./pages/Home";
+import { Favorites } from "./pages/Favorites";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Oi</h1>
-    </div>
+    <Switch>
+      <Route path="/favorites" component={Favorites} />
+      <Route path="/" component={Home} />
+    </Switch>
   );
 }
 
