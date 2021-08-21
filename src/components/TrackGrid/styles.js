@@ -23,7 +23,7 @@ export const Grid = styled.div`
 
     @media ${theme.media.lteSmall} {
       grid-template-columns: 1fr;
-      gap: 4rem;
+      gap: ${theme.spacings.xlarge};
       grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     }
   `}

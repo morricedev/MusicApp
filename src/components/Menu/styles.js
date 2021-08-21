@@ -41,10 +41,6 @@ export const Logo = styled.div`
       justify-content: center;
       margin: 0;
       margin-bottom: ${theme.spacings.xxlarge};
-
-      img {
-        border: 0.3rem solid ${theme.colors.secondary};
-      }
     }
   `}
 `;

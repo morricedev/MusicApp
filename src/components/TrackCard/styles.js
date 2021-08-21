@@ -63,43 +63,48 @@ export const IconsContainer = styled.div`
 `;
 
 export const FavoriteButton = styled.div`
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => css`
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 
-  & span {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    & span {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
 
-    display: block;
-    font-size: ms(2);
-    width: auto;
-    height: auto;
-    cursor: pointer;
-    box-shadow: none;
-    transition: color 0.3s ease-in-out;
-    color: #cbcdce;
-    margin: 0;
+      display: block;
+      font-size: ms(2);
+      width: auto;
+      height: auto;
+      cursor: pointer;
+      box-shadow: none;
+      transition: color 0.3s ease-in-out;
+      color: #cbcdce;
+      margin: 0;
 
-    & svg {
-      width: 30px;
+      & svg {
+        width: 30px;
+      }
+
+      &.fade {
+        animation: fade-in-keyframes 1.5s;
+      }
     }
 
-    &.fade {
-      animation: fade-in-keyframes 1s;
+    @keyframes fade-in-keyframes {
+      0% {
+        color: black;
+      }
+      50% {
+        color: ${theme.colors.secondary};
+      }
+      to {
+        color: black;
+      }
     }
-  }
-
-  @keyframes fade-in-keyframes {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  `}
 `;
 
 export const Duration = styled.div`
