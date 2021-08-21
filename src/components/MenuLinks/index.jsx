@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
 import * as Styled from "./styles";
 
 export const MenuLinks = () => {
   return (
     <Styled.Wrapper>
-      <Styled.Link href={"/"}>Início</Styled.Link>
-      <Styled.Link href={"/favorites"}>Favoritos</Styled.Link>
+      <Link to={"/"}>
+        <Styled.Link>Início</Styled.Link>
+      </Link>
+      <Link to={"/favorites"}>
+        <Styled.Link>Favoritos</Styled.Link>
+      </Link>
     </Styled.Wrapper>
   );
 };

@@ -1,12 +1,15 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  a {
+    text-decoration: none;
+  }
+`;
 
-export const Link = styled.a`
+export const Link = styled.span`
   ${({ theme }) => css`
     display: block;
     color: ${theme.colors.white};
-    text-decoration: none;
     margin-bottom: ${theme.spacings.small};
     font-size: 1.8rem;
     border-right: 0.5rem solid ${theme.colors.primary};
