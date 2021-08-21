@@ -17,7 +17,15 @@ export const TrackCard = ({
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const durationInMinutes = (duration / 60).toFixed(2).replace(".", ":");
+  const toMinutes = duration % (60 * 60);
+  const minutes = Math.floor(toMinutes / 60);
+
+  const toSeconds = toMinutes % 60;
+  const seconds = Math.ceil(toSeconds);
+
+  const durationInMinutes = `${("0" + minutes).slice(-2)}:${(
+    "0" + seconds
+  ).slice(-2)}`;
 
   return (
     <Styled.Wrapper>
