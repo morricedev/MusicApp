@@ -1,21 +1,27 @@
-import { Favorite } from "@styled-icons/material-outlined/Favorite";
+import { PlaylistAdd } from "@styled-icons/material-outlined/PlaylistAdd";
+import { Delete } from "@styled-icons/material-outlined/Delete";
 import { OpenInNew } from "@styled-icons/material-outlined/OpenInNew";
 import { Timer } from "@styled-icons/material-outlined/Timer";
+import { useDispatch, useSelector } from "react-redux";
 
+import * as Styled from "./styles";
+import { Heading } from "../Heading";
+import { addTrack, removeTrack } from "../../store/ducks/favorites";
 import { useState } from "react";
 
-import { Heading } from "../Heading";
-import * as Styled from "./styles";
-
 export const TrackCard = ({
+  id,
   cover,
   artist,
   title,
   trackLink,
   audioLink,
   duration,
+  isFavorite,
 }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
+  const tracks = useSelector((state) => state.favoriteTracks);
+  const [fade, setFade] = useState(false);
 
   const toMinutes = duration % (60 * 60);
   const minutes = Math.floor(toMinutes / 60);
@@ -27,15 +33,30 @@ export const TrackCard = ({
     "0" + seconds
   ).slice(-2)}`;
 
+  const handleClick = () => {
+    setFade(true);
+    if (isFavorite) {
+      dispatch(removeTrack(id));
+    } else {
+      if (tracks.some((track) => track.id === id)) return;
+      dispatch(
+        addTrack([{ id, cover, artist, title, trackLink, audioLink, duration }])
+      );
+    }
+  };
+
   return (
     <Styled.Wrapper>
       <Styled.Cover>
         <img src={cover} alt={title} />
 
         <Styled.IconsContainer>
-          <Styled.FavoriteButton onClick={() => setIsFavorite(!isFavorite)}>
-            <span className={isFavorite ? "active" : ""}>
-              <Favorite />
+          <Styled.FavoriteButton
+            onClick={handleClick}
+            onAnimationEnd={() => setFade(false)}
+          >
+            <span className={fade ? "fade" : ""}>
+              {isFavorite ? <Delete /> : <PlaylistAdd />}
             </span>
           </Styled.FavoriteButton>
 

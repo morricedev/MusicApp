@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
         opacity: 0.8;
       }
 
-      span.timer {
+      span {
         color: black;
       }
     }
@@ -79,16 +79,25 @@ export const FavoriteButton = styled.div`
     height: auto;
     cursor: pointer;
     box-shadow: none;
-    transition: all 0.2s ease;
+    transition: color 0.3s ease-in-out;
     color: #cbcdce;
     margin: 0;
 
-    &.active {
-      color: #dc3232;
+    & svg {
+      width: 30px;
     }
 
-    & svg {
-      width: 25px;
+    &.fade {
+      animation: fade-in-keyframes 1s;
+    }
+  }
+
+  @keyframes fade-in-keyframes {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;
