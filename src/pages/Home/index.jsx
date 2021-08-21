@@ -32,6 +32,22 @@ export const Home = () => {
     }
   }, [dispatch, index, searchMode]);
 
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setIndex((currentIndex) => {
+          if (searchMode) {
+            return currentIndex + limit.current + 3;
+          } else {
+            return currentIndex + limit.current;
+          }
+        });
+      }
+    });
+    intersectionObserver.observe(document.querySelector("#ward"));
+    return () => intersectionObserver.disconnect();
+  }, [searchMode]);
+
   const handleReset = () => {
     setIndex(0);
     dispatch(resetTracks());
@@ -70,15 +86,6 @@ export const Home = () => {
     search.current.value = value;
   };
 
-  const handleLoadMore = () =>
-    setIndex((currentIndex) => {
-      if (searchMode) {
-        return currentIndex + limit.current + 3;
-      } else {
-        return currentIndex + limit.current;
-      }
-    });
-
   return (
     <BaseTemplate>
       {tracks.length === 0 && <Loading isLoading={loading} />}
@@ -98,10 +105,8 @@ export const Home = () => {
       <TrackGrid tracks={tracks} loading={loading} />
 
       <Styled.ButtonContainer>
-        {tracks.length > 0 && (
-          <Styled.Button onClick={handleLoadMore} disabled={loading}>
-            {loading ? "Carregando..." : " Carregar mais"}
-          </Styled.Button>
+        {tracks.length > 0 && loading && (
+          <Styled.Button disabled={loading}>Carregando...</Styled.Button>
         )}
       </Styled.ButtonContainer>
     </BaseTemplate>
